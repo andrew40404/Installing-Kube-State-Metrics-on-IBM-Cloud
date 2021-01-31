@@ -8,7 +8,7 @@
 
 - Search for **Kubernetes Service** and click on it
 
-  
+  ![kube state metrics doc_html_46d1c04e26ba5eea](https://user-images.githubusercontent.com/5286796/106394850-d29c7000-6424-11eb-92f5-40a884eddfab.png)
 
 - You are now at the Kubernetes deployment page. You need to specify some details about the cluster
 
@@ -24,12 +24,13 @@
 
 - Choose **classic** or **VPC** , read the docs and choose the most suitable type for yourself
 
-  ![](https://user-images.githubusercontent.com/5286796/106394203-62d8b600-6421-11eb-89d2-98dc1c439942.png
+  ![kube state metrics doc_html_4d3a968071544952](https://user-images.githubusercontent.com/5286796/106394848-d0d2ac80-6424-11eb-93eb-02080615c50a.png)
 
 - Now choose your location settings,
+
 - Choose **Geography** (continent)
 
-![kong_doc_html_72496e6b0b2c820d](https://user-images.githubusercontent.com/5286796/106394202-610ef280-6421-11eb-978f-04ac9b590083.png
+![kube state metrics doc_html_72496e6b0b2c820d](https://user-images.githubusercontent.com/5286796/106394846-cf08e900-6424-11eb-9371-8bcd87fb91c5.png)
 
 -   Choose 	Single or Multizone, in single zone your data is only kept in on 	datacenter, on the
 
@@ -59,214 +60,43 @@ The Block Storage plug-in is a persistent, high-performance iSCSI storage that y
 - Give a **name** to this workspace
 - Click **install** and wait for the deployment
 
-**Step 3 : Deploying Kong**
+# Step 3 Install The Kube-State-Metrics Chart
 
-To deploy Kong onto your Kubernetes cluster with Helm, use:
+- ​	Add the Bitnami repository to Helm with the following command:
 
-```sh
-$ helm repo add kong https://charts.konghq.com
-$ helm repo update
+- ```sh
+  	helm repo add bitnami https://charts.bitnami.com/bitnami
+  ```
 
-# Helm 2
-$ helm install kong/kong
+A Helm chart describes a specific version of a solution, also known as a “release”. The “release” includes files with Kubernetes-needed resources and files that describe the installation, configuration, usage and license of a chart.
 
-# Helm 3
-$ helm install kong/kong --generate-name --set ingressController.installCRDs=false
-```
+- ​	Check that your Kubernetes cluster is running by executing the following command:
 
-**Production configuration**
+- ```sh
+  kubectl cluster-info 
+  ```
 
-This will have a value-production.yaml file where some parameters oriented to production configuration in comparison to the regular values.yaml can be find. You can use this file instead of the default file.
-
-```sh
-Enable exposing Prometheus metrics:
-```
-
-*- metrics.enabled: false*
-
-metrics.enabled: true 
+NOTE: Remember that MY-RELEASE is a placeholder, replace it with the name you want to give to the chart or add the --generate-name to give the chart a random name.
 
 ```sh
-Enable Pod Disruption Budget:
+helm install MY-RELEASE bitnami/kube-state-metrics
 ```
 
-*- pdb.enabled: false*
+**Collect resource metrics from Kubernetes objects**
 
-*+ pdb.enabled: true*
+- Deploy **Metrics Server**.
+- Use **kubectl** get to query the **Metrics** API
+- View **metric** snapshots using **kubectl** top
+- Query resource allocations with **kubectl** describe
+- Browse cluster objects in **Kubernetes** Dashboard
+- Add kube-state-**metrics** to your cluster
 
-```sh
- Increase number of replicas to 4:
-```
 
-\- replicaCount: 2
 
-\+ replicaCount: 4
+**Monitor Kube State Metrics on Kubernetes**
 
-```sh
-Enable exposing Prometheus metrics:
-```
-
-*- metrics.enabled: false*
-
-*+ metrics.enabled: true*
-
-**Database backend**
-
-```sh
-Deploy the PostgreSQL sub-chart (default)
-```
-
--  *helm install my-release bitnami-ibm/kong*
-
-```sh
-Use an external PostgreSQL database
-```
-
- *helm install my-release bitnami-ibm/kong \*
-
-   *--set postgresql.enabled=false \*
-
-   *--set postgresql.external.host=_HOST_OF_YOUR_POSTGRESQL_INSTALLATION_ \*
-
-   *--set postgresql.external.password=_PASSWORD_OF_YOUR_POSTGRESQL_INSTALLATION_ \*
-
-   *--set postgresql.external.user=_USER_OF_YOUR_POSTGRESQL_INSTALLATION_*
-
-```sh
-Deploy the Cassandra sub-chart
-```
-
- *helm install my-release bitnami-ibm/kong \*
-
-   *--set database=cassandra \*
-
-   *--set postgresql.enabled=false \*
-
-   *--set cassandra.enabled=true*
-
-```sh
-Use an existing Cassandra installation
-```
-
- *helm install my-release bitnami-ibm/kong \*
-
-   *--set database=cassandra \*
-
-   *--set postgresql.enabled=false \*
-
-   *--set cassandra.enabled=false \*
-
-   *--set cassandra.external.hosts[0]=_CONTACT_POINT_0_OF_YOUR_CASSANDRA_CLUSTER_ \*
-
-   *--set cassandra.external.hosts[1]=_CONTACT_POINT_1_OF_YOUR_CASSANDRA_CLUSTER_ \*
-
-   *...*
-
-   *--set cassandra.external.user=_USER_OF_YOUR_CASSANDRA_INSTALLATION_ \*
-
-   *--set cassandra.external.password=_PASSWORD_OF_YOUR_CASSANDRA_INSTALLATION_*
-
-
-
-
-**Sidecars and Init Containers**
-
-If you have a need for additional containers to run within the same pod as Kong (e.g. an additional metrics or logging exporter), you can do so via the sidecars config parameter. Simply define your container according to the Kubernetes container spec.
-
-*sidecars:*
-
- *- name: your-image-name*
-
-   *image: your-image*
-
-   *imagePullPolicy: Always*
-
-   *ports:*
-
-​     *- name: portname*
-
-​      *containerPort: 1234*
-
-
-
-Similarly, you can add extra init containers using the initContainers parameter.
-
-*initContainers:*
-
- *- name: your-image-name*
-
-   *image: your-image*
-
-   *imagePullPolicy: Always*
-
-   *ports:*
-
-​     *- name: portname*
-
-​       *containerPort: 1234*
-
-
-
-**Adding extra environment variables**
-
-In case you want to add extra environment variables (useful for advanced operations like custom init scripts), you can use the kong.extraEnvVars property.
-
-kong:
-
- extraEnvVars:
-
-   \- name: KONG_LOG_LEVEL
-
-​     value: error
-
-Alternatively, you can use a ConfigMap or a Secret with the environment variables. To do so, use the kong.extraEnvVarsCM or the kong.extraEnvVarsSecret values.
-
-The Kong Ingress Controller and the Kong Migration job also allow this kind of configuration the ingressController.extraEnvVars, ingressController.extraEnvVarsCM, ingressController.extraEnvVarsSecret, migration.extraEnvVars, migration.extraEnvVarsCM and migration.extraEnvVarsSecret values.
-
-**Using custom init scripts**
-
-For advanced operations, the Bitnami Kong charts allows using custom init scripts that will be mounted in /docker-entrypoint.init-db. You can use a ConfigMap or a Secret (in case of sensitive data) for mounting these extra scripts. Then use the kong.initScriptsCM and kong.initScriptsSecret values.
-
-elasticsearch.hosts[0]=elasticsearch-host
-
-elasticsearch.port=9200
-
-initScriptsCM=special-scripts
-
-initScriptsSecret=special-scripts-sensitive
-
-**Deploying extra resources**
-
-There are cases where you may want to deploy extra objects, such as KongPlugins, KongConsumers, amongst others. For covering this case, the chart allows adding the full specification of other objects using the extraDeploy parameter. The following example would activate a plugin at deployment time.
-
-\## Extra objects to deploy (value evaluated as a template)
-
-\##
-
-extraDeploy: |-
-
- \- apiVersion: configuration.konghq.com/v1
-
-   kind: KongPlugin
-
-   metadata:
-
-​     name: {{ include "common.names.fullname" . }}-plugin-correlation
-
-​     namespace: {{ .Release.Namespace }}
-
-​     labels: {{- include "common.labels.standard" . | nindent 6 }}
-
-   config:
-
-​     header_name: my-request-id
-
-   plugin: correlation-id
-
-
-
-**Setting Pod's affinity**
-
-This chart allows you to set your custom affinity using the affinity parameter.
-
-As an alternative, you can use of the preset configurations for pod affinity, pod anti-affinity, and node affinity available at the [bitnami/common](https://github.com/bitnami/charts/tree/master/bitnami/common#affinities) chart. To do so, set the podAffinityPreset, podAntiAffinityPreset, or nodeAffinityPreset parameters.
+1. Monitor node status, node capacity (CPU and memory)
+2. Monitor replica-set compliance (desired/available/unavailable/updated status of replicas per deployment)
+3. Monitor pod status (waiting, running, ready, etc)
+4. Monitor the resource requests and limits.
+5. Monitor Job & Cronjob Status
