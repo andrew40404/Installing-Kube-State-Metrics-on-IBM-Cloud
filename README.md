@@ -1,6 +1,6 @@
-# Installing Kong on IBM Cloud
+# Installing Kube-State-Metrics on IBM Cloud
 
-**Step 1 - provision Kubernetes Cluster**
+**Step 1 provision Kubernetes Cluster**
 
 - Click the **Catalog** button on the top
 
@@ -8,7 +8,7 @@
 
 - Search for **Kubernetes Service** and click on it
 
-  ![kong_doc_html_46d1c04e26ba5eea](https://user-images.githubusercontent.com/5286796/106394187-4b013200-6421-11eb-92b7-6c825737765c.png)
+  
 
 - You are now at the Kubernetes deployment page. You need to specify some details about the cluster
 
@@ -24,12 +24,12 @@
 
 - Choose **classic** or **VPC** , read the docs and choose the most suitable type for yourself
 
-  ![kong_doc_html_4d3a968071544952](https://user-images.githubusercontent.com/5286796/106394203-62d8b600-6421-11eb-89d2-98dc1c439942.png)
+  ![](https://user-images.githubusercontent.com/5286796/106394203-62d8b600-6421-11eb-89d2-98dc1c439942.png
 
 - Now choose your location settings,
 - Choose **Geography** (continent)
 
-![kong_doc_html_72496e6b0b2c820d](https://user-images.githubusercontent.com/5286796/106394202-610ef280-6421-11eb-978f-04ac9b590083.png)
+![kong_doc_html_72496e6b0b2c820d](https://user-images.githubusercontent.com/5286796/106394202-610ef280-6421-11eb-978f-04ac9b590083.png
 
 -   Choose 	Single or Multizone, in single zone your data is only kept in on 	datacenter, on the
 
