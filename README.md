@@ -12,7 +12,8 @@
 
 - You are now at the Kubernetes deployment page. You need to specify some details about the cluster
 
-- Choose a plan **standard** or **free**. The free plan only has one worker node and no subnet. To provision a standard cluster, you will need to upgrade your account to Pay-As-You-Go
+- Choose a plan **standard** or **free**. The free plan only has one worker node and no subnet. To provision a standard cluster, you will need to upgrade
+  your account to Pay-As-You-Go
 
 - To upgrade to a Pay-As-You-Go account, complete the following steps:
 
@@ -32,7 +33,8 @@
 
 ![kube state metrics doc_html_72496e6b0b2c820d](https://user-images.githubusercontent.com/5286796/106394846-cf08e900-6424-11eb-9371-8bcd87fb91c5.png)
 
-- Choose 	Single or Multizone. In single zone, your data is only kept on the	datacenter. On the other hand with Multizone, it is distributed to multiple zones, thus safer in an unforeseen zone failure.
+- Choose Single or Multizone. In single zone, your data is only kept on the	datacenter. On the other hand with Multizone, it is distributed to multiple zones,thus safer
+  in an unforeseen zone failure.
 
 - If you wish to use Multizone, please set up your account with VRF
 
@@ -40,13 +42,13 @@
 - Choose a Worker node setup or use the preselected one, set Worker node amount per zone
 - Choose **Master Service Endpoint**. 
 
-> In VRF-enabled accounts, you can choose private-only to make your master accessible on the private network or via VPN tunnel. Choose public-only to make your master publicly accessible. When you have a VRF-enabled account, your cluster is set up by default to use both private and public endpoints.
+> In VRF-enabled accounts, you can choose private-only to make your master accessible on the private network or via VPN tunnel. Choose public-only to make your master publicly     accessible. When you have a VRF-enabled account,your cluster is set up by default to use both private and public endpoints.
 
 
-- Give desired **tags** to your cluster, for more information visit tags
-- Click **create**
-  - Wait for your cluster to be provisioned
-  - Your cluster is ready for usage
+ - Give desired **tags** to your cluster, for more information visit tags
+ - Click **create**
+ - Wait for your cluster to be provisioned
+ - Your cluster is ready for usage
 
 **Step 2 Deploy IBM Cloud Block Storage plug-in**
 
@@ -102,7 +104,6 @@ helm install MY-RELEASE bitnami/kube-state-metrics
 - Query resource allocations with **kubectl** describe
 - Browse cluster objects in **Kubernetes** Dashboard
 - Add kube-state-**metrics** to your cluster
-
 
 
 **Monitor Kube State Metrics on Kubernetes**
