@@ -53,12 +53,24 @@
 The Block Storage plug-in is a persistent, high-performance iSCSI storage that you can add to your apps by using Kubernetes Persistent Volumes (PVs).
 
 - Click the **Catalog** button on the top
+
 - Select **Software** from the catalog
+
 - Search for **IBM Cloud Block Storage plug-in** and click on it
+
+- ![kube state metrics4](https://user-images.githubusercontent.com/5286796/106734578-30090a80-6639-11eb-92f3-b7a9355a89ca.png)
+
   - On the application page Click in the dot next to the cluster, you wish to use
+
   - Click on Enter or Select Namespace and choose the default Namespace or use a custom one (if you get error please wait 30 minutes for the cluster to finalize)
+
+    ![kube state metrics6](https://user-images.githubusercontent.com/5286796/106734562-2c758380-6639-11eb-9497-4ae0a098d824.png)
+
 - Give a **name** to this workspace
+
 - Click **install** and wait for the deployment
+
+  ![kube state metrics5](https://user-images.githubusercontent.com/5286796/106734574-2ed7dd80-6639-11eb-9be9-cfe10c69a14c.png)
 
 # Step 3 Install The Kube-State-Metrics Chart
 
