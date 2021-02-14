@@ -1,6 +1,6 @@
 # Installing Kube-State-Metrics on IBM Cloud
 
-## Step 1 provision Kubernetes Cluster**
+## Step 1 Provision Kubernetes Cluster
 
 - Click the **Catalog** button on the top
 - Select **Service** from the **Catalog**
