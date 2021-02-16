@@ -1,6 +1,6 @@
 # Installing Kube-State-Metrics on IBM Cloud
 
-## Step 1 Provision Kubernetes Cluster
+## Step 1 - Provision Kubernetes Cluster
 
 - Click the **Catalog** button on the top
 - Select **Service** from the **Catalog**
@@ -37,7 +37,7 @@
  - Wait for your cluster to be provisioned
  - Your cluster is ready for usage
 
-## Step 2 Deploy IBM Cloud Block Storage plug-in
+## Step 2 - Deploy IBM Cloud Block Storage plug-in
 
 The Block Storage plug-in is a persistent, high-performance iSCSI storage that you can add to your apps by using Kubernetes Persistent Volumes (PVs).
 
@@ -57,7 +57,7 @@ The Block Storage plug-in is a persistent, high-performance iSCSI storage that y
 
 ![kube state metrics5](https://user-images.githubusercontent.com/5286796/106734574-2ed7dd80-6639-11eb-9be9-cfe10c69a14c.png)
 
-## Step 3 Install The Kube-State-Metrics Chart
+## Step 3 - Install The Kube-State-Metrics Chart
 
 - ​	Add the Bitnami repository to Helm with the following command:
 
